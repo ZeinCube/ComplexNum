@@ -45,6 +45,8 @@ class ComplexNum {
 
   friend istream& operator>>(istream &in, ComplexNum &c);
 
+  bool operator==(const ComplexNum &num);
+
   const double arg() const;
 
  private:
@@ -63,17 +65,17 @@ class PolarComplex {
 
   PolarComplex(const PolarComplex &num);
 
-  const double get_ro() const;
+  double get_ro() const;
 
-  const double get_phi() const;
+  double get_phi() const;
 
-  const void set_ro(double r);
+  void set_ro(double r);
 
-  const void set_phi(double p);
+  void set_phi(double p);
 
-  const double abs(const double re, const double im);
+  double abs(const double re, const double im);
 
-  const double arg(double re, double im);
+  double arg(double re, double im);
 
   const PolarComplex& operator+=(const PolarComplex &num);
 
@@ -88,6 +90,8 @@ class PolarComplex {
   PolarComplex operator-(const PolarComplex &num);
 
   PolarComplex operator/(const PolarComplex &num);
+
+  bool operator==(const PolarComplex &num);
 
   friend ostream& operator<<(ostream &st, const PolarComplex &num);
 

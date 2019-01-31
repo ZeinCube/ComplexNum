@@ -85,6 +85,11 @@ using namespace std;
     return in;
   }
 
+  bool ComplexNum::operator==(const ComplexNum& right_op) {
+    return (std::abs(this->re - right_op.re) < 0.00001 &&
+            std::abs(this->im - right_op.im) < 0.00001);
+  }
+
   const double ComplexNum::arg() const {
     if (re == 0) {
       if (im < 0) {
@@ -113,6 +118,8 @@ using namespace std;
   PolarComplex cartToPolar(const ComplexNum &num) {
     return PolarComplex(num.abs(), num.arg());
   }
+
+  //Polar Complex
 
   PolarComplex::PolarComplex() {}
 
@@ -179,26 +186,30 @@ using namespace std;
     return st;
   }
 
-  const double PolarComplex::abs(double re, double im) {
+  double PolarComplex::abs(double re, double im) {
     return sqrt(re * re + im * im);
   }
 
-  const double PolarComplex::arg(double re, double im) {
+  bool PolarComplex::operator==(const PolarComplex &num) {
+    return (polarToCart(*this) == polarToCart(num));
+  }
+
+  double PolarComplex::arg(double re, double im) {
     return atan2(im, re) * 180 / M_PI;
   }
 
-  const double PolarComplex::get_ro() const {
+  double PolarComplex::get_ro() const {
     return this->ro;
   }
 
-  const double PolarComplex::get_phi() const {
+  double PolarComplex::get_phi() const {
     return this->phi;
   }
 
-  const void PolarComplex::set_phi(double p) {
+  void PolarComplex::set_phi(double p) {
     this->phi = std::abs(p);
   }
 
-  const void PolarComplex::set_ro(double r) {
+  void PolarComplex::set_ro(double r) {
     this->ro = std::abs(r);
   }
